@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  mongodb:
+    image: mongo:4.0
+    #environment:
+    #  MONGO_INITDB_ROOT_USERNAME: mongoadmin
+    #  MONGO_INITDB_ROOT_PASSWORD: secret
+    volumes:
+      - ./db-data/:/data/db
+    ports:
+      - 27017:27017
+  user:
+    build: ./users
+    #container_name: peli_moviess
+    ports:
+      - "5000:4000"
+  movies:
+    build: ./movies
+    #container_name: peli_user
+    ports:
+      - "5001:4000"
+  booking:
+    build: ./booking
+    #container_name: peli_user
+    ports:
+      - "5002:4000"
+  showtimes:
+    build: ./showtimes
+    #container_name: peli_user
+    ports:
+      - "5003:4000"
